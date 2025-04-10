@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Resumen del Proyecto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: monospace;
+            color: #c0392b;
+        }
+        hr {
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Resumen</h1>
+    <p>En esta parte del proyecto, se seleccionaron dos proyectos de software (uno en C++ y otro en Python) con el objetivo de generar documentación automática utilizando herramientas especializadas: <strong>Doxygen</strong> para C++ y <strong>Sphinx</strong> para Python. La documentación generada fue publicada utilizando <strong>GitHub Pages</strong> y <strong>Read the Docs</strong> respectivamente. Donde ambos programas fueron generados por chatgpt por conveniencia con el tiempo.</p>
+
+    <hr>
+
+    <h2>Proyecto en C++ – <em>GestorDeTareas</em></h2>
+
+    <h3>Descripción</h3>
+    <p>Se desarrolló un sistema sencillo de gestión de tareas en consola. El usuario puede agregar tareas, marcarlas como completadas, listarlas y eliminarlas. Todo el código fue debidamente comentado utilizando el estilo compatible con <strong>Doxygen</strong>.</p>
+
+    <h3>Estructura del proyecto</h3>
+    <pre>
+GestorDeTareas/
+├── main.cpp
+├── Tarea.h
+├── Tarea.cpp
+└── Doxyfile
+    </pre>
+
+    <h3>Ejemplo de comentario Doxygen:</h3>
+    <pre><code class="language-cpp">
+/**
+ * @brief Clase que representa una tarea individual.
+ */
+class Tarea {
+public:
+    /**
+     * @brief Constructor de la clase Tarea.
+     * @param descripcion Descripción de la tarea.
+     */
+    Tarea(std::string descripcion);
+
+    /**
+     * @brief Marca la tarea como completada.
+     */
+    void completar();
+
+    /// Imprime los detalles de la tarea.
+    void mostrar() const;
+};
+    </code></pre>
+
+    <h3>Proceso para generar la documentación con Doxygen</h3>
+    <ol>
+        <li>Instalar Doxygen y Graphviz:<br><code>sudo apt install doxygen graphviz</code></li>
+        <li>Generar archivo de configuración:<br><code>doxygen -g Doxyfile</code></li>
+        <li>Editar Doxyfile para activar HTML:
+            <ul>
+                <li><code>EXTRACT_ALL = YES</code></li>
+                <li><code>GENERATE_HTML = YES</code></li>
+                <li><code>INPUT = .</code></li>
+                <li><code>RECURSIVE = YES</code></li>
+            </ul>
+        </li>
+        <li>Ejecutar Doxygen:<br><code>doxygen Doxyfile</code></li>
+    </ol>
+
+    <hr>
+
+    <h2>Proyecto en Python – CalculadoraAvanzada</h2>
+
+    <h3>Descripción</h3>
+    <p>Se desarrolló una calculadora modular en Python que incluye funciones básicas (suma, resta, multiplicación, división) y avanzadas (potencia, raíz cuadrada, factorial). Todo el código fue documentado con docstrings en formato reStructuredText, compatible con Sphinx.</p>
+
+    <h3>Estructura del proyecto</h3>
+    <pre>
+CalculadoraAvanzada/
+├── src/
+│   └── calculadora.py
+├── docs/
+│   ├── conf.py
+│   ├── index.rst
+│   └── _build/html/
+└── README.md
+    </pre>
+
+    <h3>Ejemplo de docstring para Sphinx</h3>
+    <pre><code class="language-python">
+def sumar(a, b):
+    '''
+    Suma dos números
+    :param a: Primer número.
+    :param b: Segundo número.
+    :return: Resultado de la suma.
+    '''
+    return a + b
+    </code></pre>
+
+    <h3>Proceso para generar la documentación con Sphinx</h3>
+    <ol>
+        <li>Instalar Sphinx:<br><code>pip install sphinx</code></li>
+        <li>Crear documentación:<br><code>sphinx-quickstart</code></li>
+        <li>Agregar la ruta del código en <code>conf.py</code>:
+            <pre><code>import os
+import sys
+sys.path.insert(0, os.path.abspath('../src'))</code></pre>
+        </li>
+        <li>Generar archivos .rst:<br><code>sphinx-apidoc -o source/ ../src/</code></li>
+        <li>Compilar la documentación:<br><code>make html</code></li>
+    </ol>
+
+    <hr>
+
+    <h2>Comentario sobre la experiencia</h2>
+    <p>La generación de documentación automática fue una experiencia valiosa para entender cómo se estructuran proyectos profesionales.</p>
+    <p><strong>Doxygen</strong> resultó muy fácil de usar. Su sistema basado en comentarios tipo <code>/** */</code> es intuitivo. La generación de la documentación es rápida y muy visual. Lo más destacable fue la capacidad de integrar diagramas de clases gracias a Graphviz.</p>
+    <p><strong>Sphinx</strong>, por otro lado, fue un poco más complejo al inicio, ya que requiere configurar varios archivos y conocer el formato reStructuredText. Sin embargo, ofrece una documentación extremadamente profesional y flexible. Read the Docs facilitó la publicación en línea de manera automática al enlazar el repositorio.</p>
+    <p>Ambas herramientas son muy recomendadas y demuestran la importancia de escribir comentarios adecuados en el código para facilitar la generación de documentación comprensible y profesional.</p>
+
+</body>
+</html>
